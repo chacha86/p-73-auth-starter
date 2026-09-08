@@ -16,9 +16,10 @@ export default function Edit() {
     fetchApi(`/api/v1/posts/${id}`).then(setPost);
   }, []);
 
-  // 🔴 [5강] 인가 - 로그인 안 했으면 막기
-  //   if (!loginMember) return <div>로그인 후 이용해주세요.</div>;
-  // TODO
+  // 로그인해야 수정할 수 있다
+  if (!loginMember) {
+    return <div>로그인 후 이용해주세요.</div>;
+  }
 
   if (post === null) {
     return <div>Loading...</div>;
