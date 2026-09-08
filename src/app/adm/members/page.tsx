@@ -16,10 +16,13 @@ export default function Adm() {
       .catch((rsData) => alert(rsData.msg));
   }, []);
 
-  // 🔴 [6강] 인가 - 관리자만 접근
-  //   if (!loginMember) return <div>로그인 후 이용해주세요.</div>;
-  //   if (!loginMember.isAdmin) return <div>관리자 권한이 없습니다.</div>;
-  // TODO
+  // 관리자만 볼 수 있는 페이지
+  if (!loginMember) {
+    return <div>로그인 후 이용해주세요.</div>;
+  }
+  if (!loginMember.isAdmin) {
+    return <div>관리자 권한이 없습니다.</div>;
+  }
 
   return (
     <>
