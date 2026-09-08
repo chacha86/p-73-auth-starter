@@ -14,10 +14,9 @@ export default function ClientLayout({
   const isAdmin = !!loginMember?.isAdmin;
 
   useEffect(() => {
-    // 🔴 [3강] 로그인 상태 확인: GET /api/v1/members/me
-    //   성공하면 setLoginMember(data.data)   ← /me 응답은 data.data 가 회원 정보
-    //   로그인 안 한 상태면 실패하니 .catch(() => {}) 로 무시
-    // TODO
+    fetchApi("/api/v1/members/me")
+      .then((data) => setLoginMember(data.data))
+      .catch(() => {}); // 로그인 안 한 상태면 실패하므로 무시
   }, []);
 
   const logout = () => {
