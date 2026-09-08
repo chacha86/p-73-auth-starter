@@ -8,14 +8,16 @@ export default function Login() {
   const { loginMember, setLoginMember } = useAuth();
   const router = useRouter();
 
-  // 🔴 [7강] 인가 - 이미 로그인한 상태면 접근 막기
-  //   if (loginMember) return <div>이미 로그인 되어있습니다.</div>;
-  // TODO
+  // 이미 로그인한 상태면 로그인 페이지에 들어올 필요가 없다
+  if (loginMember) {
+    return <div>이미 로그인 되어있습니다.</div>;
+  }
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
 
     const form = e.target;
+
     const loginIdInput = form.loginId;
     const loginPwInput = form.loginPw;
 
@@ -23,6 +25,7 @@ export default function Login() {
       alert("아이디를 입력해주세요.");
       loginIdInput.focus();
     }
+
     if (loginPwInput.value.length === 0) {
       alert("비밀번호 입력해주세요.");
       loginPwInput.focus();
@@ -47,9 +50,23 @@ export default function Login() {
     <>
       <h1 className="text-center">로그인</h1>
       <form className="flex flex-col gap-2 p-2" onSubmit={handleSubmit}>
-        <input className="border border-gray-300 rounded p-2" type="text" name="loginId" placeholder="아이디" maxLength={10} />
-        <input type="password" className="border border-gray-300 rounded p-2" name="loginPw" placeholder="비밀번호" maxLength={100} />
-        <button className="bg-blue-500 text-white p-2 rounded" type="submit">로그인</button>
+        <input
+          className="border border-gray-300 rounded p-2"
+          type="text"
+          name="loginId"
+          placeholder="아이디"
+          maxLength={10}
+        />
+        <input
+          type="password"
+          className="border border-gray-300 rounded p-2"
+          name="loginPw"
+          placeholder="비밀번호"
+          maxLength={100}
+        />
+        <button className="bg-blue-500 text-white p-2 rounded" type="submit">
+          로그인
+        </button>
       </form>
     </>
   );
