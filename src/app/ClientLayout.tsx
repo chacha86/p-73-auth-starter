@@ -20,8 +20,9 @@ export default function ClientLayout({
   }, []);
 
   const logout = () => {
-    // 🔴 [4강] 로그아웃: DELETE /api/v1/members/logout 후 setLoginMember(null)
-    // TODO
+    fetchApi("/api/v1/members/logout", { method: "DELETE" }).then(() =>
+      setLoginMember(null)
+    );
   };
 
   return (
