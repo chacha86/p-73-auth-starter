@@ -1,9 +1,6 @@
 export function fetchApi(url: string, options?: RequestInit) {
   options = options || {};
-
-  // 🔴 [1강] 모든 요청에 쿠키(인증정보)가 자동으로 실려가도록 설정하세요.
-  //   힌트: options.credentials
-  // TODO
+  options.credentials = "include";
 
   if (options?.body) {
     const headers = new Headers(options.headers || {});
